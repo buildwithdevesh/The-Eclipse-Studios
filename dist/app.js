@@ -142,14 +142,84 @@ if (finePointer && !reducedMotion) {
 
 const form = document.getElementById('contact-form');
 const formSuccess = document.getElementById('form-success');
+const serviceSelect = document.querySelector('[data-service-select]');
+const serviceNative = document.getElementById('service');
+const serviceTrigger = document.getElementById('service-trigger');
+const serviceValue = document.getElementById('service-value');
+const serviceMenu = document.getElementById('service-menu');
+const serviceOptions = [...(serviceMenu?.querySelectorAll('[role="option"]') || [])];
 
 function validateField(field) {
   const wrapper = field.closest('.field');
   const valid = field.checkValidity();
   wrapper?.classList.toggle('is-invalid', !valid);
   field.setAttribute('aria-invalid', String(!valid));
+  if (field === serviceNative) serviceTrigger?.setAttribute('aria-invalid', String(!valid));
   return valid;
 }
+
+function setServiceMenu(open, focusOption = false) {
+  if (!serviceMenu || !serviceTrigger) return;
+  serviceMenu.hidden = !open;
+  serviceTrigger.setAttribute('aria-expanded', String(open));
+  if (open && focusOption) {
+    const selected = serviceOptions.find((option) => option.getAttribute('aria-selected') === 'true');
+    (selected || serviceOptions[0])?.focus();
+  }
+}
+
+function chooseService(option) {
+  if (!serviceNative || !serviceValue || !option) return;
+  serviceNative.value = option.dataset.value || '';
+  serviceValue.textContent = option.dataset.value || 'Choose a service';
+  serviceOptions.forEach((item) => item.setAttribute('aria-selected', String(item === option)));
+  serviceNative.dispatchEvent(new Event('input', { bubbles: true }));
+  serviceNative.dispatchEvent(new Event('change', { bubbles: true }));
+  validateField(serviceNative);
+  setServiceMenu(false);
+  serviceTrigger?.focus();
+}
+
+serviceTrigger?.addEventListener('click', () => {
+  setServiceMenu(serviceTrigger.getAttribute('aria-expanded') !== 'true');
+});
+
+serviceTrigger?.addEventListener('keydown', (event) => {
+  if (!['ArrowDown', 'ArrowUp'].includes(event.key)) return;
+  event.preventDefault();
+  setServiceMenu(true, true);
+});
+
+serviceOptions.forEach((option, index) => {
+  option.addEventListener('click', () => chooseService(option));
+  option.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      setServiceMenu(false);
+      serviceTrigger?.focus();
+      return;
+    }
+    if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) return;
+    event.preventDefault();
+    let target = index;
+    if (event.key === 'ArrowDown') target = (index + 1) % serviceOptions.length;
+    if (event.key === 'ArrowUp') target = (index - 1 + serviceOptions.length) % serviceOptions.length;
+    if (event.key === 'Home') target = 0;
+    if (event.key === 'End') target = serviceOptions.length - 1;
+    serviceOptions[target]?.focus();
+  });
+});
+
+document.addEventListener('pointerdown', (event) => {
+  if (!serviceSelect?.contains(event.target)) setServiceMenu(false);
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && serviceTrigger?.getAttribute('aria-expanded') === 'true') {
+    setServiceMenu(false);
+    serviceTrigger.focus();
+  }
+});
 
 form?.querySelectorAll('input, select, textarea').forEach((field) => {
   field.addEventListener('blur', () => validateField(field));
@@ -163,7 +233,9 @@ form?.addEventListener('submit', (event) => {
   const requiredFields = [...form.querySelectorAll('[required]')];
   const valid = requiredFields.map(validateField).every(Boolean);
   if (!valid) {
-    form.querySelector('[aria-invalid="true"]')?.focus();
+    const firstInvalid = form.querySelector('[aria-invalid="true"]');
+    if (firstInvalid === serviceNative) serviceTrigger?.focus();
+    else firstInvalid?.focus();
     return;
   }
 

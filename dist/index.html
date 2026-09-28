@@ -96,33 +96,43 @@
       </section>
 
       <section class="studio-session" id="studio" aria-labelledby="studio-title">
-        <figure class="studio-photo parallax-media reveal-block" data-speed=".045">
-          <img src="assets/production-suite.jpg" alt="The Eclipse Studios control room, keyboard and production workstation" loading="lazy" />
-          <div class="studio-photo-meta mono"><span>ROOM / A</span><b><i class="live-dot"></i> SESSION READY</b></div>
-          <svg class="studio-wave vector-draw" viewBox="0 0 900 220" preserveAspectRatio="none" aria-hidden="true"><path d="M0 110h70l19-32 22 70 28-122 31 176 27-110 27 47 26-29h91l24-66 28 133 27-98 31 52 32-21h77l22-46 28 93 29-71 26 36 28-12h130"/></svg>
-          <figcaption class="mono"><span>CONTROL / CAPTURE / PLAYBACK</span><b>48 kHz / 24 BIT</b></figcaption>
-        </figure>
+        <div class="studio-grid-bg" aria-hidden="true"></div>
+        <header class="studio-intro reveal-block">
+          <div class="studio-kicker mono"><span>01 / INSIDE THE STUDIO</span><i></i><b><em class="live-dot"></em> ROOM A / LIVE</b></div>
+          <h2 id="studio-title">Leave the noise<br /><span>outside the room.</span></h2>
+          <p>No pressure to arrive finished. Bring the voice note, the half-written verse or the chorus you cannot stop hearing. We start there.</p>
+        </header>
 
-        <div class="studio-copy reveal-block">
-          <div class="studio-code mono"><span>01 / THE ROOM</span><i></i><b>INPUT OPEN</b></div>
-          <h2 id="studio-title">Low lights.<br />Headphones on.<br /><span>Talkback open.</span></h2>
-          <p>The room is tuned before you arrive, so the session can begin with the song—not a soundcheck.</p>
-          <ul class="studio-checks mono">
-            <li><span>01</span>Focused control room</li>
-            <li><span>02</span>Isolated vocal space</li>
-            <li><span>03</span>Production-ready setup</li>
-          </ul>
-          <a class="studio-link" href="#services">Choose your session <span>↘</span></a>
-        </div>
+        <div class="room-composition">
+          <figure class="room-main parallax-media reveal-block" data-speed=".035">
+            <img src="assets/control-room.jpg" alt="The Eclipse Studios control room with production desk and studio monitors" loading="lazy" />
+            <figcaption class="mono"><span>A / CONTROL ROOM</span><b>LISTENING POSITION / 01</b></figcaption>
+          </figure>
 
-        <div class="studio-console reveal-block" aria-hidden="true">
-          <div class="console-label mono"><span>MONITOR PATH</span><b>L / R</b></div>
-          <svg class="speaker-diagram vector-draw" viewBox="0 0 620 210" preserveAspectRatio="none">
-            <g><rect x="10" y="18" width="130" height="172"/><circle cx="75" cy="118" r="42"/><circle cx="75" cy="57" r="14"/></g>
-            <path d="M155 105h56l16-43 20 90 25-138 29 184 23-113 23 48 20-28h74"/>
-            <g><rect x="480" y="18" width="130" height="172"/><circle cx="545" cy="118" r="42"/><circle cx="545" cy="57" r="14"/></g>
+          <aside class="room-note reveal-block">
+            <div class="room-note-head mono"><span>SESSION NOTE / 001</span><b>TAKE ONE</b></div>
+            <blockquote>“Let’s get one honest take before we chase the perfect one.”</blockquote>
+            <ul class="mono">
+              <li><span>01</span><b>Record without the room getting in the way</b></li>
+              <li><span>02</span><b>Build the arrangement while the idea is alive</b></li>
+              <li><span>03</span><b>Leave with a clear next move</b></li>
+            </ul>
+            <a href="#services">See how a session works <span>↘</span></a>
+          </aside>
+
+          <figure class="room-detail room-mic reveal-block">
+            <img src="assets/microphone.jpg" alt="Studio condenser microphone ready for a vocal recording" loading="lazy" />
+            <figcaption class="mono"><span>MIC / A</span><b>VOCAL CHAIN</b></figcaption>
+          </figure>
+          <figure class="room-detail room-booth reveal-block">
+            <img src="assets/booth.jpg" alt="The Eclipse Studios isolated vocal booth" loading="lazy" />
+            <figcaption class="mono"><span>BOOTH / B</span><b>ISOLATION</b></figcaption>
+          </figure>
+
+          <svg class="room-route vector-draw" viewBox="0 0 1200 600" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M40 88h190c55 0 55 114 110 114h170c58 0 58 260 116 260h188c56 0 56-195 112-195h234"/>
+            <circle cx="40" cy="88" r="8"/><circle cx="626" cy="462" r="8"/><circle cx="1160" cy="267" r="8"/>
           </svg>
-          <div class="console-levels mono"><span>L</span><i style="--v:72%"></i><i style="--v:61%"></i><i style="--v:84%"></i><i style="--v:48%"></i><i style="--v:76%"></i><b>R</b></div>
         </div>
       </section>
 
@@ -246,12 +256,26 @@
             <label for="phone">Phone</label>
             <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+91" />
           </div>
-          <div class="field">
-            <label for="service">What does the track need?</label>
-            <select id="service" name="service" required>
-              <option value="" selected disabled>Choose a service</option>
-              <option>Recording</option><option>Music Production</option><option>Mixing</option><option>Mastering</option><option>Full Song Production</option>
-            </select>
+          <div class="field field-service">
+            <label id="service-field-label" for="service-trigger">What does the track need?</label>
+            <div class="service-select" data-service-select>
+              <select class="service-native" id="service" name="service" required tabindex="-1" aria-hidden="true">
+                <option value="" selected disabled>Choose a service</option>
+                <option>Recording</option><option>Music Production</option><option>Mixing</option><option>Mastering</option><option>Full Song Production</option>
+              </select>
+              <button class="service-trigger" id="service-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="service-menu" aria-labelledby="service-field-label service-value">
+                <span id="service-value">Choose a service</span>
+                <svg viewBox="0 0 32 16" aria-hidden="true"><path d="M1 2l15 12L31 2"/></svg>
+              </button>
+              <div class="service-menu" id="service-menu" role="listbox" aria-labelledby="service-field-label" hidden>
+                <div class="service-menu-head mono"><span>SELECT INPUT</span><b>CH / 01—05</b></div>
+                <button type="button" role="option" aria-selected="false" data-value="Recording"><span>01</span><b>Recording</b><em>MIC / BOOTH</em></button>
+                <button type="button" role="option" aria-selected="false" data-value="Music Production"><span>02</span><b>Music Production</b><em>MIDI / ARRANGE</em></button>
+                <button type="button" role="option" aria-selected="false" data-value="Mixing"><span>03</span><b>Mixing</b><em>BUS / BALANCE</em></button>
+                <button type="button" role="option" aria-selected="false" data-value="Mastering"><span>04</span><b>Mastering</b><em>2-BUS / FINAL</em></button>
+                <button type="button" role="option" aria-selected="false" data-value="Full Song Production"><span>05</span><b>Full Song Production</b><em>FULL SIGNAL PATH</em></button>
+              </div>
+            </div>
             <span class="field-error">Choose one service.</span>
           </div>
           <div class="field">
