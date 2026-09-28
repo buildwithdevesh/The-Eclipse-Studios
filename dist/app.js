@@ -53,7 +53,7 @@ mobileMenu?.querySelectorAll('a').forEach((link) => link.addEventListener('click
 
 if (!reducedMotion && window.matchMedia('(pointer: fine)').matches) {
   const glow = document.querySelector('.cursor-glow');
-  const stage = document.querySelector('.eclipse-stage');
+  const stage = document.querySelector('.sonic-console');
   window.addEventListener('pointermove', (event) => {
     glow?.style.setProperty('--mouse-x', `${event.clientX}px`);
     glow?.style.setProperty('--mouse-y', `${event.clientY}px`);
@@ -83,3 +83,33 @@ if (!reducedMotion && window.matchMedia('(pointer: fine)').matches) {
     card.addEventListener('pointerleave', () => { card.style.transform = ''; });
   });
 }
+
+const contactForm = document.getElementById('contact-form');
+const formNote = document.getElementById('form-note');
+contactForm?.addEventListener('submit', (event) => {
+  event.preventDefault();
+  if (!contactForm.reportValidity()) return;
+
+  const data = new FormData(contactForm);
+  const name = String(data.get('name') || '').trim();
+  const email = String(data.get('email') || '').trim();
+  const phone = String(data.get('phone') || '').trim();
+  const service = String(data.get('service') || '').trim();
+  const message = String(data.get('message') || '').trim();
+  const subject = `Studio enquiry — ${service} — ${name}`;
+  const body = [
+    `Hi The Eclipse Studios,`,
+    ``,
+    `I'd like to enquire about ${service}.`,
+    ``,
+    message,
+    ``,
+    `Name: ${name}`,
+    `Email: ${email}`,
+    `Phone: ${phone || 'Not provided'}`
+  ].join('\n');
+
+  formNote.textContent = 'Your enquiry is ready — opening your email app…';
+  formNote.classList.add('is-success');
+  window.location.href = `mailto:bhavyasatija2540@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+});
