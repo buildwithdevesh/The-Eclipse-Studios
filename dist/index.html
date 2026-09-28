@@ -95,25 +95,34 @@
         </div>
       </section>
 
-      <section class="manifesto" id="studio">
-        <div class="side-label mono"><span>01</span><b>THE ROOM</b></div>
-        <div class="manifesto-statement reveal-block">
-          <span class="statement-kicker mono">NO PRETENCE. NO PRESSURE.</span>
-          <h2>This is where the demo <strong>stops being a demo.</strong></h2>
-        </div>
-        <div class="manifesto-copy reveal-block">
-          <p>The room is tuned. The signal chain is ready. The session moves at the speed of the song—not the clock.</p>
-          <p>Come in to capture one honest take or stay for the complete production. We’ll listen first, then build what the track actually needs.</p>
-          <a href="#services">See the signal chain <span>↓</span></a>
-        </div>
-        <figure class="manifesto-image parallax-media reveal-block" data-speed=".05">
-          <img src="assets/microphone.jpg" alt="Condenser microphone ready for a recording session" loading="lazy" />
-          <figcaption class="mono"><span>CAPTURE / DETAIL</span><b>MIC 01</b></figcaption>
+      <section class="studio-session" id="studio" aria-labelledby="studio-title">
+        <figure class="studio-photo parallax-media reveal-block" data-speed=".045">
+          <img src="assets/production-suite.jpg" alt="The Eclipse Studios control room, keyboard and production workstation" loading="lazy" />
+          <div class="studio-photo-meta mono"><span>ROOM / A</span><b><i class="live-dot"></i> SESSION READY</b></div>
+          <svg class="studio-wave vector-draw" viewBox="0 0 900 220" preserveAspectRatio="none" aria-hidden="true"><path d="M0 110h70l19-32 22 70 28-122 31 176 27-110 27 47 26-29h91l24-66 28 133 27-98 31 52 32-21h77l22-46 28 93 29-71 26 36 28-12h130"/></svg>
+          <figcaption class="mono"><span>CONTROL / CAPTURE / PLAYBACK</span><b>48 kHz / 24 BIT</b></figcaption>
         </figure>
-        <div class="room-stats mono reveal-block">
-          <div><span>01</span><p>Focused control room</p></div>
-          <div><span>02</span><p>Isolated vocal space</p></div>
-          <div><span>03</span><p>Production-ready setup</p></div>
+
+        <div class="studio-copy reveal-block">
+          <div class="studio-code mono"><span>01 / THE ROOM</span><i></i><b>INPUT OPEN</b></div>
+          <h2 id="studio-title">Low lights.<br />Headphones on.<br /><span>Talkback open.</span></h2>
+          <p>The room is tuned before you arrive, so the session can begin with the song—not a soundcheck.</p>
+          <ul class="studio-checks mono">
+            <li><span>01</span>Focused control room</li>
+            <li><span>02</span>Isolated vocal space</li>
+            <li><span>03</span>Production-ready setup</li>
+          </ul>
+          <a class="studio-link" href="#services">Choose your session <span>↘</span></a>
+        </div>
+
+        <div class="studio-console reveal-block" aria-hidden="true">
+          <div class="console-label mono"><span>MONITOR PATH</span><b>L / R</b></div>
+          <svg class="speaker-diagram vector-draw" viewBox="0 0 620 210" preserveAspectRatio="none">
+            <g><rect x="10" y="18" width="130" height="172"/><circle cx="75" cy="118" r="42"/><circle cx="75" cy="57" r="14"/></g>
+            <path d="M155 105h56l16-43 20 90 25-138 29 184 23-113 23 48 20-28h74"/>
+            <g><rect x="480" y="18" width="130" height="172"/><circle cx="545" cy="118" r="42"/><circle cx="545" cy="57" r="14"/></g>
+          </svg>
+          <div class="console-levels mono"><span>L</span><i style="--v:72%"></i><i style="--v:61%"></i><i style="--v:84%"></i><i style="--v:48%"></i><i style="--v:76%"></i><b>R</b></div>
         </div>
       </section>
 
@@ -163,15 +172,22 @@
       <section class="process" id="process" aria-labelledby="process-title">
         <div class="process-backdrop" aria-hidden="true">
           <div class="midi-grid"></div>
-          <svg class="patch-map vector-draw" viewBox="0 0 1400 860" preserveAspectRatio="none">
-            <path d="M90 160C250 160 200 405 355 405S480 240 610 240 760 620 920 620 1010 330 1320 330"/>
-            <circle cx="90" cy="160" r="8"/><circle cx="355" cy="405" r="8"/><circle cx="610" cy="240" r="8"/><circle cx="920" cy="620" r="8"/><circle cx="1320" cy="330" r="8"/>
+          <svg class="patch-map vector-draw" viewBox="0 0 1400 760" preserveAspectRatio="none">
+            <path d="M0 280h110c76 0 52-144 128-144s52 284 132 284 54-218 134-218 55 126 137 126 56-210 138-210 58 248 140 248 60-148 144-148 62 62 147 62h290"/>
+            <circle cx="110" cy="280" r="7"/><circle cx="370" cy="420" r="7"/><circle cx="641" cy="328" r="7"/><circle cx="919" cy="366" r="7"/><circle cx="1210" cy="280" r="7"/>
           </svg>
         </div>
-        <header class="process-header">
-          <div class="side-label mono"><span>03</span><b>SIGNAL PATH</b></div>
-          <p class="mono">VOICE NOTE → FINAL MASTER</p>
-          <h2 id="process-title" class="reveal-block">Your song,<br />without the guesswork.</h2>
+        <header class="process-header reveal-block">
+          <div class="process-meta mono"><span>03 / SIGNAL PATH</span><b>4 STAGES / 1 RECORD</b><i>STEREO</i></div>
+          <h2 id="process-title" class="process-title">
+            <span class="process-title-line"><i>From</i> voice note</span>
+            <span class="process-title-line process-title-outline">to final master.</span>
+          </h2>
+          <div class="process-intro">
+            <p>No mystery chain. Four clear stages, one conversation at a time.</p>
+            <div class="process-mini-levels" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          </div>
+          <svg class="process-head-wave vector-draw" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0 60h90l13-30 17 65 21-90 24 108 21-68 20 29 19-14h85l17-40 22 82 23-61 20 29 22-10h72l19-29 23 60 21-83 26 99 21-58 22 22 24-11h96l14-22 18 47 20-69 21 82 18-48 19 19h100"/></svg>
         </header>
         <ol class="process-steps">
           <li class="process-step reveal-block"><span class="mono">01 / LISTEN</span><h3>Bring the rough idea.</h3><p>A demo, a lyric sheet, a reference playlist or just the melody—you don’t need to arrive “ready.”</p></li>
